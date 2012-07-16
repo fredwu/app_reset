@@ -20,9 +20,7 @@ if Rails.env.development? || Rails.env.test?
 
       Rails.env = env
 
-      Rake::Task['db:drop'].invoke
-      Rake::Task['db:create'].invoke
-      Rake::Task['db:migrate'].invoke
+      Rake::Task['db:migrate:reset'].invoke
 
       # execute the main app's seeds.rb file
       load 'db/seeds.rb'
