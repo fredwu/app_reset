@@ -10,6 +10,13 @@ Compared to `db:migrate:reset`:
 
 `app:reset` will call always call `db:create` to ensure databases exist, and then calls `db:migrate:reset`. It also ensures `seeds.rb` will get called if you are in a rails engine environment.
 
+`app_reset` basically replaces the following steps:
+
+- db:create
+- db:migrate:reset
+- RAILS_ENV=test db:migrate:reset
+- run seeds.rb from your rails engine
+
 ## Installation
 
 It is recommended you only include `app_reset` in your development environment:
