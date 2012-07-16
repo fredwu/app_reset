@@ -2,15 +2,15 @@
 
 ## Why?
 
-Compared to `db:reset`:
+Compared to __db:reset__:
 
-`db:reset` resets your database from `schema.rb` - during early stage of development, the migration files are often updated to keep the sanity.
+`db:reset` resets your database from `schema.rb` - during early stage of development, the migration files are often edited directly to keep the sanity.
 
-Compared to `db:migrate:reset`:
+Compared to __db:migrate:reset__:
 
-`app:reset` will call always call `db:create` to ensure databases exist, and then calls `db:migrate:reset`. It also ensures `seeds.rb` will get called if you are in a rails engine environment.
+AppReset always calls `db:create` to ensure databases exist, and then calls `db:migrate:reset`. It also ensures `seeds.rb` will get called if you are in a rails engine environment.
 
-`app_reset` basically replaces the following steps:
+AppReset basically replaces the following steps:
 
 - db:create
 - db:migrate:reset
