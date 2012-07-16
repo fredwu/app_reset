@@ -5,7 +5,7 @@ if Rails.env.development? || Rails.env.test?
   task_name = host_is_engine ? 'reset' : 'app:reset'
 
   desc 'Resets (and if available, seeds) your development and test databases'
-  task task_name => :environment do
+  task task_name => 'db:create' do
     ['development', 'test'].each do |env|
       ap '=' * 35
       ap "Resetting #{env} database ..."
