@@ -1,5 +1,15 @@
 # AppReset
 
+## Why?
+
+Compared to `db:reset`:
+
+`db:reset` resets your database from `schema.rb` - during early stage of development, the migration files are often updated to keep the sanity.
+
+Compared to `db:migrate:reset`:
+
+`app:reset` will call always call `db:create` to ensure databases exist, and then calls `db:migrate:reset`. It also ensures `seeds.rb` will get called if you are in a rails engine environment.
+
 ## Installation
 
 It is recommended you only include `app_reset` in your development environment:
