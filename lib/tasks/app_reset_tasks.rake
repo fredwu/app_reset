@@ -1,6 +1,6 @@
 require 'awesome_print'
 
-if Rails.env.development? || Rails.env.test?
+unless Rails.env.production?
   host_is_engine = ! Rake::Task.tasks.map { |t| t.name =~ /app:/ }.uniq.compact.empty?
   task_name = host_is_engine ? 'reset' : 'app:reset'
 
