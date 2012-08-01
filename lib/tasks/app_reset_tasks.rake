@@ -3,10 +3,11 @@ require 'awesome_print'
 unless Rails.env.production?
   host_is_engine = ! Rake::Task.tasks.map { |t| t.name =~ /app:/ }.uniq.compact.empty?
   task_name = host_is_engine ? 'reset' : 'app:reset'
+  rails_envs = [ENV['RAILS_ENV']] || ['development', 'test']
 
   desc 'Resets (and if available, seeds) your development and test databases'
   task task_name => 'db:create' do
-    ['development', 'test'].each do |env|
+    rails_envs.each do |env|
       ap '=' * 35
       ap "Resetting #{env} database ..."
       ap '=' * 35
