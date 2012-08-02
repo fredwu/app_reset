@@ -3,7 +3,7 @@ require 'awesome_print'
 unless Rails.env.production?
   host_is_engine = ! Rake::Task.tasks.map { |t| t.name =~ /app:/ }.uniq.compact.empty?
   task_name = host_is_engine ? 'reset' : 'app:reset'
-  rails_envs = [ENV['RAILS_ENV']] || ['development', 'test']
+  rails_envs = ENV['RAILS_ENV'].nil? ? ['development', 'test'] : [ENV['RAILS_ENV']]
 
   desc 'Resets (and if available, seeds) your development and test databases'
   task task_name => 'db:create' do
