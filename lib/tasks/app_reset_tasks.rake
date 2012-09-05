@@ -1,7 +1,9 @@
 unless Rails.env.production?
   host_is_engine = ! Rake::Task.tasks.map { |t| t.name =~ /app:/ }.uniq.compact.empty?
   task_name = host_is_engine ? 'reset' : 'app:reset'
-  rails_envs = ENV['RAILS_ENV'].nil? ? ['development', 'test'] : [ENV['RAILS_ENV']]
+
+  rails_env = ENV['RAILS_ENV']
+  rails_envs = rails_env.nil? ? ['development', 'test'] : [rails_env]
 
   desc 'Resets (and if available, seeds) your development and test databases'
   task task_name => 'db:create' do
@@ -26,6 +28,6 @@ unless Rails.env.production?
     end
 
     # ensure we reset the Rails.env in case other tasks depend on this
-    Rails.env = ENV['RAILS_ENV']
+    ENV['RAILS_ENV'] = rails_env
   end
 end
