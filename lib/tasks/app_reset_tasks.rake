@@ -1,5 +1,3 @@
-require 'awesome_print'
-
 unless Rails.env.production?
   host_is_engine = ! Rake::Task.tasks.map { |t| t.name =~ /app:/ }.uniq.compact.empty?
   task_name = host_is_engine ? 'reset' : 'app:reset'
@@ -8,9 +6,9 @@ unless Rails.env.production?
   desc 'Resets (and if available, seeds) your development and test databases'
   task task_name => 'db:create' do
     rails_envs.each do |env|
-      ap '=' * 35
-      ap "Resetting #{env} database ..."
-      ap '=' * 35
+      puts '=' * 35
+      puts "Resetting #{env} database ..."
+      puts '=' * 35
 
       # this workaround is faster than spawning subprocesses,
       # but due to the nature of it (it re-enables pretty much all tasks),
