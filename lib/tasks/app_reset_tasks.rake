@@ -2,7 +2,7 @@ host_is_engine = ! Rake::Task.tasks.map { |t| t.name =~ /app:/ }.uniq.compact.em
 task_name = host_is_engine ? 'reset' : 'app:reset'
 
 rails_env = ENV['RAILS_ENV']
-rails_envs = rails_env.nil? ? ['development', 'test'] : [rails_env]
+rails_envs = rails_env.nil? ? ['test', 'development'] : [rails_env]
 
 desc 'Resets (and if available, seeds) your development and test databases'
 task task_name => 'db:create' do
