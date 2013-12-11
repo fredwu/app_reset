@@ -6,6 +6,8 @@ rails_envs = rails_env.nil? ? ['test', 'development'] : [rails_env]
 
 desc 'Resets (and if available, seeds) your development and test databases'
 task task_name => 'db:create' do
+  `spring stop &> /dev/null`
+
   rails_envs.each do |env|
     puts '=' * 35
     puts "Resetting #{env} database ..."
